@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
 import sun.plugin.javascript.navig.Anchor;
 import  javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 /**
  *
  * @author david
@@ -40,16 +41,25 @@ public class FXMLDocumentController implements Initializable {
     private Button apply;
 
     public void handleButtonaApply(ActionEvent event) {
-        JOptionPane.showMessageDialog(null, "si");
+      
         int numeroImagenesFila = 4;
         int numeroImagenesColumna = 4;
         
-        Rectangle rectangle = new Rectangle (100,100,Color.CADETBLUE);
+        Rectangle rectangle = new Rectangle (90,90,Color.CADETBLUE);
         Rectangle[][] images = new Rectangle[numeroImagenesFila][numeroImagenesColumna];
-//        for(int r=0;r<numeroImagenesFila;r++)
-//            for(int c=0;c<numeroImagenesColumna;c++)
-//                gridCountainer.add(rectangle, r, c);
+        for(int r=0;r<numeroImagenesFila;r++){
+            for(int c=0;c<numeroImagenesColumna;c++){
+                images[c][r] = new Rectangle (90,90,Color.CADETBLUE);
+                Rectangle imageTmp = images[c][r];
+                imageTmp.setStrokeType(StrokeType.OUTSIDE);
+                imageTmp.setStroke(Color.CHOCOLATE);
+                
+                gridCountainer.add(images[c][r], c, r);
+              
+            }
+        }
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
