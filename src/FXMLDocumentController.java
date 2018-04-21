@@ -66,7 +66,8 @@ public class FXMLDocumentController implements Initializable {
        enteroColum= (Integer.parseInt(numColum.getText()));
         } catch (Exception e) {
             esEntero = false;
-            
+            numRow.setText("");
+            numColum.setText("");
         }
         return esEntero;
     }//fin isEntero
@@ -74,19 +75,20 @@ public class FXMLDocumentController implements Initializable {
     //Accion Buttonapply
     public void handleButtonaApply(ActionEvent event) {
       anchorCountainerMap.getChildren().clear();
+      if(numRow.getText().isEmpty()==false && numColum.getText().isEmpty()==false){
       if(isEntero()==true){
        
         int numeroImagenesFila = Integer.parseInt(numRow.getText());
         int numeroImagenesColumna = Integer.parseInt(numColum.getText());
 
-        Rectangle rectangle = new Rectangle(80, 80, Color.CADETBLUE);
+       
         Rectangle[][] images = new Rectangle[numeroImagenesColumna][numeroImagenesFila];
         for (int r = 0; r < numeroImagenesFila; r++) {
             for (int c = 0; c < numeroImagenesColumna; c++) {
-                images[c][r] = new Rectangle(80, 80, Color.CADETBLUE);
+                images[c][r] = new Rectangle(80, 80, Color.WHITE);
                 Rectangle imageTmp = images[c][r];
                 imageTmp.setStrokeType(StrokeType.OUTSIDE);
-                imageTmp.setStroke(Color.CHOCOLATE);
+                imageTmp.setStroke(Color.CADETBLUE);
 
                 gridCountainer.add(images[c][r], c, r);
 
@@ -96,8 +98,12 @@ public class FXMLDocumentController implements Initializable {
         anchorCountainerMap.getChildren().addAll(gridCountainer);
       }//fin if isEntero
       else{
-          JOptionPane.showMessageDialog(null, "Caracter no valido");
-      }
+          JOptionPane.showMessageDialog(null, "Character no valid");
+      }//fin caracter no valido
+       }//fin if isEntero
+      else{
+          JOptionPane.showMessageDialog(null, "There is not characters entered");
+      }//fin isEmpty
     }// buttonApply
     
     
