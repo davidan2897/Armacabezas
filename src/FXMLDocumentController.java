@@ -55,42 +55,61 @@ public class FXMLDocumentController implements Initializable {
     private TextField numRow;  
     @FXML
     private TextField numColum;  
+    
+    //Validar si se ingresan numero en el tamño de matriz
+    public boolean isEntero() {
+        int enteroRow;
+        int enteroColum;
+        boolean esEntero = true;
+        try {
+       enteroRow = (Integer.parseInt(numRow.getText()));
+       enteroColum= (Integer.parseInt(numColum.getText()));
+        } catch (Exception e) {
+            esEntero = false;
+            
+        }
+        return esEntero;
+    }//fin isEntero
 
+    //Accion Buttonapply
     public void handleButtonaApply(ActionEvent event) {
       anchorCountainerMap.getChildren().clear();
+      if(isEntero()==true){
        
-      
-      
-       
-        int numeroImagenesFila =  Integer.parseInt(numRow.getText());
-        int numeroImagenesColumna =  Integer.parseInt(numColum.getText());
-        
-        
-        Rectangle rectangle = new Rectangle (80,80,Color.CADETBLUE);
+        int numeroImagenesFila = Integer.parseInt(numRow.getText());
+        int numeroImagenesColumna = Integer.parseInt(numColum.getText());
+
+        Rectangle rectangle = new Rectangle(80, 80, Color.CADETBLUE);
         Rectangle[][] images = new Rectangle[numeroImagenesColumna][numeroImagenesFila];
-        for(int r=0;r<numeroImagenesFila;r++){
-            for(int c=0;c<numeroImagenesColumna;c++){
-                images[c][r] = new Rectangle (80,80,Color.CADETBLUE);
+        for (int r = 0; r < numeroImagenesFila; r++) {
+            for (int c = 0; c < numeroImagenesColumna; c++) {
+                images[c][r] = new Rectangle(80, 80, Color.CADETBLUE);
                 Rectangle imageTmp = images[c][r];
                 imageTmp.setStrokeType(StrokeType.OUTSIDE);
                 imageTmp.setStroke(Color.CHOCOLATE);
-                
+
                 gridCountainer.add(images[c][r], c, r);
-                
+
             }
         }
-        gridCountainer.setPrefSize( numeroImagenesColumna*80,numeroImagenesFila*80);
-       anchorCountainerMap.getChildren().addAll(gridCountainer);
+        gridCountainer.setPrefSize(numeroImagenesColumna * 80, numeroImagenesFila * 80);
+        anchorCountainerMap.getChildren().addAll(gridCountainer);
+      }//fin if isEntero
+      else{
+          JOptionPane.showMessageDialog(null, "Caracter no valido");
+      }
+    }// buttonApply
     
-       
-    }
+    
      public void handleButtonReset(ActionEvent event) {
  
      }
+     //Accion menuItemExit
     public void ItemExit(ActionEvent event) {
         
         System.exit(0);
     }
+    //Accion menuItemAbout
     public void ItemAbout(ActionEvent event) {
         TextArea textAreabout = new TextArea("Esta aplicacion esta hecha con el proposito de \n"
                 + "que el cliente pueda diseñar sus propias imagenes apartir de otras imagenes\n"
