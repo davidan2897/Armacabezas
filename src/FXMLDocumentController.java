@@ -6,6 +6,12 @@
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +24,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -26,6 +34,7 @@ import sun.plugin.javascript.navig.Anchor;
 import  javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 /**
  *
  * @author david
@@ -38,6 +47,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label labelEnterSizeColumAndRows;
     @FXML
+    private Label labelWelcome;
+    @FXML
     private ScrollPane scrollPaneMapa;
     @FXML
     private AnchorPane anchorCountainerMap;
@@ -46,7 +57,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button apply;
      @FXML
-     private Button btnReset;
+     private Button buttonReset;
      @FXML
     private MenuItem menuItemExit;
       @FXML
@@ -108,7 +119,7 @@ public class FXMLDocumentController implements Initializable {
     
     
      public void handleButtonReset(ActionEvent event) {
- 
+
      }
      //Accion menuItemExit
     public void ItemExit(ActionEvent event) {
@@ -127,14 +138,55 @@ public class FXMLDocumentController implements Initializable {
         textAreabout.setWrapText(true);
         textAreabout.setMaxSize(250, 150);
         textAreabout.setEditable(false);
-     textAreabout.setLayoutX(40);
-     textAreabout.setLayoutY(100);
+        textAreabout.setLayoutX(40);
+        textAreabout.setLayoutY(100);
     }
+
+    public void movientoLabelWelcome() {
+        Timeline timeline;
+        AnimationTimer timer;
+        //movimiento 
+        TranslateTransition transitioneWelcome = new TranslateTransition();
+        transitioneWelcome.setDuration(Duration.seconds(6));
+        transitioneWelcome.setToX(70);
+        transitioneWelcome.setToY(250);
+
+        transitioneWelcome.setAutoReverse(true);
+        transitioneWelcome.setNode(labelWelcome);
+        transitioneWelcome.setCycleCount(Animation.INDEFINITE);
+        transitioneWelcome.play();
+
+        //cambio de tamaño labelwelcome
+        KeyValue keyValueX = new KeyValue(labelWelcome.scaleXProperty(), 1);
+        KeyValue keyValueY = new KeyValue(labelWelcome.scaleYProperty(), 2);
+        Duration duration = Duration.millis(4000);
+
+        KeyFrame keyFrame = new KeyFrame(duration, keyValueX, keyValueY);
+
+        //ejecucion 
+        timeline = new Timeline();
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.setAutoReverse(true);
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+
+            }
+
+        };
+        timeline.getKeyFrames().add(keyFrame);
+
+        timeline.play();
+        timer.start();
+    }//fin movimiento wellcome
+
+           
     
     
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        movientoLabelWelcome();
         // TODO
     }
 

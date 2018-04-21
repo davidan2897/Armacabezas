@@ -18,13 +18,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="531.0" prefWidth="564.0" style="-fx-background-color: #787474;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="564.0" style="-fx-background-color: #787474;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
    <children>
-      <ScrollPane fx:id="scrollPaneMapa" hbarPolicy="ALWAYS" layoutX="15.0" layoutY="34.0" prefHeight="374.0" prefWidth="395.0" vbarPolicy="ALWAYS">
+      <Label prefHeight="419.0" prefWidth="564.0" style="-fx-background-color: #636a93;" />
+      <ScrollPane fx:id="scrollPaneMapa" hbarPolicy="ALWAYS" layoutX="12.0" layoutY="39.0" prefHeight="358.0" prefWidth="395.0" vbarPolicy="ALWAYS">
          <content>
-            <AnchorPane fx:id="anchorCountainerMap" prefHeight="352.0" prefWidth="374.0" style="-fx-background-color: #fffdfd;">
+            <AnchorPane fx:id="anchorCountainerMap" prefHeight="321.0" prefWidth="364.0" style="-fx-background-color: #000000;">
                <children>
-                  <GridPane fx:id="gridCountainer" layoutX="31.0" layoutY="51.0" prefHeight="247.0" prefWidth="299.0">
+                  <Label fx:id="labelWelcome" layoutX="51.0" layoutY="19.0" text="Welcome" textFill="#e5e1e1">
+                     <font>
+                        <Font name="Broadway" size="50.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="gridCountainer" layoutX="24.0" layoutY="47.0" prefHeight="247.0" prefWidth="299.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="NEVER" maxWidth="153.0" minWidth="10.0" prefWidth="142.0" />
                       <ColumnConstraints hgrow="NEVER" maxWidth="163.0" minWidth="10.0" prefWidth="137.0" />
@@ -47,7 +53,7 @@
                </children>
             </AnchorPane>
          </content></ScrollPane>
-      <MenuBar layoutX="15.0" layoutY="14.0">
+      <MenuBar layoutX="14.0" layoutY="14.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -69,16 +75,16 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label fx:id="labelEnterSizeColumAndRows" layoutX="13.0" layoutY="421.0" prefHeight="15.0" prefWidth="247.0" text="Insert the size of the map:  Colum        Row" textFill="#fffdfd">
+      <Label fx:id="labelEnterSizeColumAndRows" alignment="TOP_LEFT" layoutX="13.0" layoutY="421.0" prefHeight="25.0" prefWidth="145.0" text="Insert the size of the map:" textFill="WHITE">
          <font>
             <Font name="Georgia" size="12.0" />
          </font></Label>
-      <Label layoutX="192.0" layoutY="448.0" text="x">
+      <Label layoutX="55.0" layoutY="473.0" text="x" textFill="#f5f5f5">
          <font>
             <Font name="Georgia" size="22.0" />
          </font></Label>
-      <TextField fx:id="numColum" layoutX="209.0" layoutY="448.0" prefHeight="25.0" prefWidth="29.0" />
-      <TextField fx:id="numRow" layoutX="158.0" layoutY="448.0" prefHeight="25.0" prefWidth="29.0" />
+      <TextField fx:id="numColum" layoutX="72.0" layoutY="473.0" prefHeight="25.0" prefWidth="29.0" />
+      <TextField fx:id="numRow" layoutX="14.0" layoutY="473.0" prefHeight="25.0" prefWidth="29.0" />
       <ScrollPane layoutX="430.0" layoutY="56.0" prefHeight="331.0" prefWidth="97.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="94.0">
@@ -112,15 +118,15 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Button fx:id="apply" layoutX="179.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleButtonaApply" text="Apply">
+      <Button fx:id="apply" layoutX="140.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleButtonaApply" text="Apply">
          <font>
             <Font name="Franklin Gothic Demi" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="apply1" layoutX="246.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleButtonReset" text="Reset">
+      <Label fx:id="labelEnterSizeColumAndRows1" alignment="TOP_LEFT" layoutX="12.0" layoutY="448.0" prefHeight="25.0" prefWidth="87.0" text="Colum   |    Row" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Demi" size="14.0" />
+            <Font name="Georgia" size="12.0" />
          </font>
-      </Button>
+      </Label>
    </children>
 </AnchorPane>
