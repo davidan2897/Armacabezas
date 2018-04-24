@@ -7,9 +7,21 @@ and open the template in the editor.
 
 
 <root>
-    <imagen> 
-        <nombre>mortalk</nombre>
+    <image> 
+        <nombre>iconoMk</nombre>
         <URL>iconoMK.png</URL>
-        <imagen> 
-
+    </image> 
+    <image>
+        <nombre>Icono_facebook</nombre>
+        <URL>Icono_Facebook.png</URL>
+    </image>
+    <image>
+        <nombre>Twitter-icon</nombre>
+        <URL>Twitter-icon.png</URL>
+    </image>
+    <image>
+        <nombre>iconoGmail</nombre>
+        <URL>iconoGmail.png</URL>
+    </image>
+                       
 </root>
