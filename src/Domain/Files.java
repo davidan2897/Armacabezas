@@ -2,8 +2,10 @@ package Domain;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,6 +19,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 
 /*
@@ -30,27 +34,43 @@ import org.w3c.dom.Element;
  * @author David
  */
 public class Files {
+    ArrayList<Imagenes> nombreArrayList = new ArrayList<Imagenes>();
     public void BuildTheFile() throws Exception  {
     
-// 
-//        try {
-//            File fXmlFile = new File("c:\\file.xml");
-//            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-//            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-//            Document document = (Document) dBuilder.newDocument();
-//            Element elemento = (Element) document.createElement("Developer");
-//            document.appendChild(document);
-//            
-//            Attr atribute = document.createAttribute("ID");
-//            atribute.setValue("1");
-//            elemento.setAttributeNode(atribute);
-//            TransformerFactory  transformerFactory = TransformerFactory.newInstance();
-//            Transformer  transformer= transformerFactory.newInstance();
-//            DOMSource domSource = new DOMSource();
-//            StreamResult streamResult = new StreamResult(new File("C:\\XML\\file.xml"));
-//            transformer.transform(domSource, streamResult);
-//        } catch (ParserConfigurationException ex) {
-//            Logger.getLogger(Files.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-}
+ 
+        try {
+            File fXmlFile = new File("ImagesXML.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document document = dBuilder.parse(fXmlFile);
+
+            document.getDocumentElement().normalize();
+            NodeList nList = document.getElementsByTagName("image");
+ 
+       for (int temp = 0; temp < nList.getLength(); temp++) {
+ 
+     Node nNode = nList.item(temp);
+     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+       
+       
+        Element eElement = (Element) nNode;
+        String url =  getTagValue("URL", eElement);
+        String nombre =  getTagValue("nombre", eElement);
+        Imagenes imagenes = new Imagenes(url, nombre);
+        nombreArrayList.add(imagenes);
+ 
+     }
+  }
+   } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas con el archivo");
+   }
+  }
+ 
+  private static String getTagValue(String sTag, Element eElement) {
+ NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
+ 
+        Node nValue = (Node) nlList.item(0);
+ 
+ return nValue.getNodeValue();
+  }
 }

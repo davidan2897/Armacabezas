@@ -18,6 +18,7 @@ public class Imagenes {
         this.nombre = nombre;
     }
 
+
     public String getURL() {
         return URL;
     }
