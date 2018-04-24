@@ -52,15 +52,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField numColum; 
     
-    //mouse clicked
-    public void mouseClicked(ActionEvent event) {
-      
-        
-        
-        
-        
-    }
-    
 
     //Accion Buttonapply
     public void handleButtonaApply(ActionEvent event) {

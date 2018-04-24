@@ -26,7 +26,7 @@ import javafx.util.Duration;
  */
 public class auxiliarControles {
 
-    private int numeroImagenesFila;
+  
     public void FormatoTextArea(TextArea textAreabout) {
 
         String texto = ("Esta aplicacion esta hecha con el proposito de \n"
