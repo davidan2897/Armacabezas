@@ -80,7 +80,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="94.0">
                <children>
-                  <ImageView fx:id="Image1" cache="true" fitHeight="72.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Image1" cache="true" fitHeight="72.0" fitWidth="90.0" onMouseClicked="#mouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Imagenes/Icono_Facebook.png" />
                      </image>

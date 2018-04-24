@@ -6,6 +6,8 @@
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -13,28 +15,30 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
-import sun.plugin.javascript.navig.Anchor;
 import  javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 /**
  *
  * @author david
@@ -53,7 +57,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane anchorCountainerMap;
     @FXML
-    private ImageView Image1;
+    private ImageView imageFacebook;
+
+    
     @FXML
     private Button apply;
      @FXML
@@ -65,7 +71,20 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField numRow;  
     @FXML
-    private TextField numColum;  
+    private TextField numColum; 
+    
+    //mouse clicked
+    public void mouseClicked(ActionEvent event) {
+      
+        
+        
+        
+        
+    }
+    
+    
+    
+    
     
     //Validar si se ingresan numero en el tamño de matriz
     public boolean isEntero() {
@@ -86,6 +105,10 @@ public class FXMLDocumentController implements Initializable {
     //Accion Buttonapply
     public void handleButtonaApply(ActionEvent event) {
       anchorCountainerMap.getChildren().clear();
+      gridCountainer.getChildren().clear();
+      
+      
+              
       if(numRow.getText().isEmpty()==false && numColum.getText().isEmpty()==false){
       if(isEntero()==true){
        
@@ -96,7 +119,7 @@ public class FXMLDocumentController implements Initializable {
         Rectangle[][] images = new Rectangle[numeroImagenesColumna][numeroImagenesFila];
         for (int r = 0; r < numeroImagenesFila; r++) {
             for (int c = 0; c < numeroImagenesColumna; c++) {
-                images[c][r] = new Rectangle(80, 80, Color.WHITE);
+                images[c][r] = new Rectangle(100, 100, Color.WHITE);
                 Rectangle imageTmp = images[c][r];
                 imageTmp.setStrokeType(StrokeType.OUTSIDE);
                 imageTmp.setStroke(Color.CADETBLUE);
@@ -105,7 +128,7 @@ public class FXMLDocumentController implements Initializable {
 
             }
         }
-        gridCountainer.setPrefSize(numeroImagenesColumna * 80, numeroImagenesFila * 80);
+        gridCountainer.setPrefSize(numeroImagenesColumna * 100, numeroImagenesFila * 100);
         anchorCountainerMap.getChildren().addAll(gridCountainer);
       }//fin if isEntero
       else{
@@ -130,6 +153,7 @@ public class FXMLDocumentController implements Initializable {
     public void ItemAbout(ActionEvent event) {
         TextArea textAreabout = new TextArea("Esta aplicacion esta hecha con el proposito de \n"
                 + "que el cliente pueda diseñar sus propias imagenes apartir de otras imagenes\n"
+                +"Creador David Aguilera Navarro"
                 + " \n Version 1.0");
         anchorCountainerMap.getChildren().clear();
         anchorCountainerMap.getChildren().addAll(textAreabout);
@@ -149,7 +173,7 @@ public class FXMLDocumentController implements Initializable {
         TranslateTransition transitioneWelcome = new TranslateTransition();
         transitioneWelcome.setDuration(Duration.seconds(6));
         transitioneWelcome.setToX(70);
-        transitioneWelcome.setToY(250);
+        transitioneWelcome.setToY(240);
 
         transitioneWelcome.setAutoReverse(true);
         transitioneWelcome.setNode(labelWelcome);
@@ -187,7 +211,8 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         movientoLabelWelcome();
-        // TODO
+        final FileChooser fileChooser = new FileChooser();
+
     }
 
 }
