@@ -11,9 +11,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -21,6 +23,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -148,22 +151,23 @@ public class FXMLDocumentController implements Initializable {
      
        
     }
-     @FXML
- public void Screen() throws IOException {
+     
+  private void takeSnapShot(GridPane scene){
+        WritableImage writableImage = 
+            new WritableImage((int)scene.getWidth(), (int)scene.getHeight());
+        scene.snapshot(null, writableImage);
+         
+        File file = new File("snapshot.png");
         try {
-            Robot robot = new Robot(); 
-            String format = "jpg";
-            String fileName = "PartialScreenshot." + format;
-             
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            java.awt.Rectangle capRectangle = new java.awt.Rectangle(0, 0, screenSize.width / 2, screenSize.height / 2);
-            BufferedImage screenFullImage = robot.createScreenCapture(capRectangle);
-            ImageIO.write(screenFullImage, format, new File(fileName));
-             
-            System.out.println("A partial screenshot saved!");
-        } catch (AWTException ex) {
-            System.err.println(ex);
+            ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
+            System.out.println("snapshot saved: " + file.getAbsolutePath());
+        } catch (IOException ex) {
+            
         }
     }
+   public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+                takeSnapShot(gridCountainer);
 
+}
 }
