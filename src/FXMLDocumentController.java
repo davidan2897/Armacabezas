@@ -1,5 +1,12 @@
 import Domain.Files;
 import Domain.auxiliarControles;
+import java.awt.AWTException;
+import java.awt.Dimension;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,6 +27,7 @@ import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
 import  javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
+import javax.imageio.ImageIO;
 /**
  *
  * @author david
@@ -139,6 +147,23 @@ public class FXMLDocumentController implements Initializable {
      
      
        
+    }
+     @FXML
+ public void Screen() throws IOException {
+        try {
+            Robot robot = new Robot(); 
+            String format = "jpg";
+            String fileName = "PartialScreenshot." + format;
+             
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            java.awt.Rectangle capRectangle = new java.awt.Rectangle(0, 0, screenSize.width / 2, screenSize.height / 2);
+            BufferedImage screenFullImage = robot.createScreenCapture(capRectangle);
+            ImageIO.write(screenFullImage, format, new File(fileName));
+             
+            System.out.println("A partial screenshot saved!");
+        } catch (AWTException ex) {
+            System.err.println(ex);
+        }
     }
 
 }
