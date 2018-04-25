@@ -77,11 +77,12 @@ public class Files {
      url = tempImagenes.getURL();
      Image image = new Image(url);
      ImageView imageView = new ImageView(image);
+     
      imageView.setFitHeight(100);
      imageView.setFitWidth(100);
   
      vbox.getChildren().addAll(imageView);
-      
+
       }
         return vbox;
       
