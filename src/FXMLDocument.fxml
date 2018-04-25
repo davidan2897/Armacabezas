@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -22,6 +23,7 @@
 <AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="564.0" style="-fx-background-color: #787474;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
    <children>
       <Label layoutY="-25.0" prefHeight="444.0" prefWidth="585.0" style="-fx-background-color: #636a93;" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="350.0" layoutX="17.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="382.0" />
       <ScrollPane fx:id="scrollPaneMapa" hbarPolicy="ALWAYS" layoutX="12.0" layoutY="43.0" prefHeight="350.0" prefWidth="389.0" vbarPolicy="ALWAYS">
          <content>
             <AnchorPane fx:id="anchorCountainerMap" prefHeight="314.0" prefWidth="359.0" style="-fx-background-color: #000000;">
@@ -94,6 +96,6 @@
             <Font name="Georgia" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="215.0" layoutY="473.0" mnemonicParsing="false" onAction="#Screen" text="Screemshop" />
+      <Button layoutX="215.0" layoutY="473.0" mnemonicParsing="false" onAction="#handle" text="Screemshop" />
    </children>
 </AnchorPane>
