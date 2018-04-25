@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
+import static java.util.Locale.filter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +32,11 @@ import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
 import  javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
+import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author david
@@ -135,39 +141,52 @@ public class FXMLDocumentController implements Initializable {
     }       
     
     
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-      try {
-          movientoLabelWelcome();
-          cargarImagenes();
-      } catch (Exception ex) {
-          Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-      }
-          
-        
-     
-     
-       
-    }
-     
-  private void takeSnapShot(GridPane scene){
-        WritableImage writableImage = 
-            new WritableImage((int)scene.getWidth(), (int)scene.getHeight());
-        scene.snapshot(null, writableImage);
-         
-        File file = new File("snapshot.png");
         try {
-            ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-            System.out.println("snapshot saved: " + file.getAbsolutePath());
-        } catch (IOException ex) {
-            
+            movientoLabelWelcome();
+            cargarImagenes();
+        } catch (Exception ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+
+
+   /**
+ *
+ * @author kevin
+ * Realiza un screenshot del gridpane,utilizando un filechooser
+ */
+   
+    public void takeSnapshot() {
+        JFileChooser fileChooser = new JFileChooser(new File("c:\\"));
+        fileChooser.setDialogTitle("Save Image");
+
+        FileNameExtensionFilter filtroExtension = new FileNameExtensionFilter("Imagen(*.jpg)", "jpg");//filtra archivos de tipo jpg
+        fileChooser.setFileFilter(filtroExtension);
+
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = new File(fileChooser.getSelectedFile() + ".jpg");//crea el archivo file con la extencion jpg
+
+            try {
+                WritableImage writableImage
+                        = new WritableImage((int) gridCountainer.getWidth(), (int) gridCountainer.getHeight());
+                gridCountainer.snapshot(null, writableImage);
+
+                try {
+                    ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
+                    System.out.println("snapshot saved: " + file.getAbsolutePath());
+                } catch (IOException ex) {
+                    System.out.print("problemas");
+                }
+
+            } catch (Exception E) {
+
+            }
         }
     }
-   public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-                takeSnapShot(gridCountainer);
-
-}
 }
