@@ -1,6 +1,9 @@
+import Domain.Files;
 import Domain.auxiliarControles;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,13 +20,13 @@ import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
 import  javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
-import javafx.stage.FileChooser;
 /**
  *
  * @author david
  */
 public class FXMLDocumentController implements Initializable {
   auxiliarControles auxControles = new auxiliarControles();
+  Files files = new Files();
   @FXML
   private GridPane gridCountainer;
           
@@ -35,6 +38,8 @@ public class FXMLDocumentController implements Initializable {
     private ScrollPane scrollPaneMapa;
     @FXML
     private AnchorPane anchorCountainerMap;
+     @FXML
+    private AnchorPane anchor;
     @FXML
     private ImageView imageFacebook;
 
@@ -111,15 +116,29 @@ public class FXMLDocumentController implements Initializable {
        auxControles.animacionLabelWelcome(labelWelcome);
     }//fin movimiento wellcome
 
-           
+    public void cargarImagenes() throws Exception{
+        
+     anchor.getChildren().addAll(files.printImages());
+        
+        
+    }       
     
     
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        movientoLabelWelcome();
-        final FileChooser fileChooser = new FileChooser();
 
+      try {
+          movientoLabelWelcome();
+          cargarImagenes();
+      } catch (Exception ex) {
+          Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+          
+        
+     
+     
+       
     }
 
 }

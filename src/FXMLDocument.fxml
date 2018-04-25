@@ -8,8 +8,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -76,37 +74,9 @@
          </font></Label>
       <TextField fx:id="numColum" layoutX="72.0" layoutY="473.0" prefHeight="25.0" prefWidth="29.0" />
       <TextField fx:id="numRow" layoutX="14.0" layoutY="473.0" prefHeight="25.0" prefWidth="29.0" />
-      <ScrollPane layoutX="430.0" layoutY="56.0" prefHeight="331.0" prefWidth="97.0">
+      <ScrollPane layoutX="430.0" layoutY="56.0" prefHeight="350.0" prefWidth="137.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="94.0">
-               <children>
-                  <ImageView fx:id="Image1" cache="true" fitHeight="72.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Imagenes/Icono_Facebook.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="72.0" fitWidth="90.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Imagenes/Twitter-icon.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="72.0" fitWidth="90.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Imagenes/iconoInstagram.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="72.0" fitWidth="90.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Imagenes/iconoGmail.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="72.0" fitWidth="90.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Imagenes/iconoMK.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
+          <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="136.0" />
         </content>
       </ScrollPane>
       <Button fx:id="apply" layoutX="140.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleButtonaApply" text="Apply">

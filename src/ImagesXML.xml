@@ -9,19 +9,19 @@ and open the template in the editor.
 <root>
     <image> 
         <nombre>iconoMk</nombre>
-        <URL>iconoMK.png</URL>
+        <URL>Imagenes/iconoMK.png</URL>
     </image> 
     <image>
         <nombre>Icono_facebook</nombre>
-        <URL>Icono_Facebook.png</URL>
+        <URL>Imagenes/Icono_Facebook.png</URL>
     </image>
     <image>
         <nombre>Twitter-icon</nombre>
-        <URL>Twitter-icon.png</URL>
+        <URL>Imagenes/Twitter-icon.png</URL>
     </image>
     <image>
         <nombre>iconoGmail</nombre>
-        <URL>iconoGmail.png</URL>
+        <URL>Imagenes/iconoGmail.png</URL>
     </image>
                        
 </root>
