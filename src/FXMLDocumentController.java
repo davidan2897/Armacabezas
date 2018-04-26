@@ -158,7 +158,8 @@ public class FXMLDocumentController implements Initializable {
    /**
  *
  * @author kevin
- * Realiza un screenshot del gridpane,utilizando un filechooser
+ * 
+ * Realiza un screenshot del gridpane,utilizando un filechooserr
  */
    
     public void takeSnapshot() {
