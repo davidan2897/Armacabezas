@@ -5,20 +5,28 @@
  */
 package Domain;
 
+import java.io.File;
+import java.io.IOException;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.WritableImage;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -100,20 +108,36 @@ public class auxiliarControles {
         }
         return esEntero;
     }//fin isEntero
-//
-//    public Rectangle[][] enviaMatriz(int numeroImagenesColumna, int numeroImagenesFila) {
-//
-//        Rectangle[][] images = new Rectangle[numeroImagenesColumna][numeroImagenesFila];
-//        for (int r = 0; r < numeroImagenesFila; r++) {
-//            for (int c = 0; c < numeroImagenesColumna; c++) {
-//                images[c][r] = new Rectangle(100, 100, Color.WHITE);
-//                Rectangle imageTmp = images[c][r];
-//                imageTmp.setStrokeType(StrokeType.OUTSIDE);
-//                imageTmp.setStroke(Color.CADETBLUE);
-//
-//                return images;
-//
-//            }
+
+     public void takeSnapshot(GridPane gridCountainer) {
+        JFileChooser fileChooser = new JFileChooser(new File("c:\\"));
+        fileChooser.setDialogTitle("Save Image");
+
+        FileNameExtensionFilter filtroExtension = new FileNameExtensionFilter("Imagen(*.jpg)", "jpg");//filtra archivos de tipo jpg
+        fileChooser.setFileFilter(filtroExtension);
+
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = new File(fileChooser.getSelectedFile() + ".jpg");//crea el archivo file con la extencion jpg
+
+            try {
+                WritableImage writableImage
+                        = new WritableImage((int) gridCountainer.getWidth(), (int) gridCountainer.getHeight());
+                gridCountainer.snapshot(null, writableImage);
+
+                try {
+                    ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
+                    System.out.println("snapshot saved: " + file.getAbsolutePath());
+                } catch (IOException ex) {
+                    System.out.print("problemas");
+                }
+
+            } catch (Exception E) {
+
+            }
+        }
+    }
+
 
         }     
     

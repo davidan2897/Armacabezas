@@ -46,9 +46,6 @@ public class FXMLDocumentController implements Initializable {
   Files files = new Files();
   @FXML
   private GridPane gridCountainer;
-          
-    @FXML
-    private Label labelEnterSizeColumAndRows;
     @FXML
     private Label labelWelcome;
     @FXML
@@ -58,13 +55,7 @@ public class FXMLDocumentController implements Initializable {
      @FXML
     private AnchorPane anchor;
     @FXML
-    private ImageView imageFacebook;
-
-    
-    @FXML
     private Button apply;
-     @FXML
-     private Button buttonReset;
      @FXML
     private MenuItem menuItemExit;
       @FXML
@@ -128,17 +119,25 @@ public class FXMLDocumentController implements Initializable {
         anchorCountainerMap.getChildren().clear();
         anchorCountainerMap.getChildren().addAll(textAreabout);
     }
+    //animacion de labelWelcome
 
     public void movientoLabelWelcome() {
        auxControles.animacionLabelWelcome(labelWelcome);
     }//fin movimiento wellcome
 
+    //carga las imagenes a la interfaz
     public void cargarImagenes() throws Exception{
         
      anchor.getChildren().addAll(files.printImages());
         
         
-    }       
+    }   
+   
+    //exporta las image final en archivo jpg Item export
+    public void exportImagejpg() {
+ 
+  auxControles.takeSnapshot(gridCountainer);
+}    
     
     
     @Override
@@ -161,33 +160,6 @@ public class FXMLDocumentController implements Initializable {
  * 
  * Realiza un screenshot del gridpane,utilizando un filechooserr
  */
-   
-    public void takeSnapshot() {
-        JFileChooser fileChooser = new JFileChooser(new File("c:\\"));
-        fileChooser.setDialogTitle("Save Image");
 
-        FileNameExtensionFilter filtroExtension = new FileNameExtensionFilter("Imagen(*.jpg)", "jpg");//filtra archivos de tipo jpg
-        fileChooser.setFileFilter(filtroExtension);
-
-        int result = fileChooser.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File file = new File(fileChooser.getSelectedFile() + ".jpg");//crea el archivo file con la extencion jpg
-
-            try {
-                WritableImage writableImage
-                        = new WritableImage((int) gridCountainer.getWidth(), (int) gridCountainer.getHeight());
-                gridCountainer.snapshot(null, writableImage);
-
-                try {
-                    ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-                    System.out.println("snapshot saved: " + file.getAbsolutePath());
-                } catch (IOException ex) {
-                    System.out.print("problemas");
-                }
-
-            } catch (Exception E) {
-
-            }
-        }
-    }
+    
 }
