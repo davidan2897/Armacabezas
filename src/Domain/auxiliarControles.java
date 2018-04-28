@@ -109,7 +109,7 @@ public class auxiliarControles {
         return esEntero;
     }//fin isEntero
 
-     public void takeSnapshot(GridPane gridCountainer) {
+     public void takeSnapshotjpg(GridPane gridCountainer) {
         JFileChooser fileChooser = new JFileChooser(new File("c:\\"));
         fileChooser.setDialogTitle("Save Image");
 
@@ -137,7 +137,34 @@ public class auxiliarControles {
             }
         }
     }
+public void takeSnapshotpng(GridPane gridCountainer) {
+        JFileChooser fileChooser = new JFileChooser(new File("c:\\"));
+        fileChooser.setDialogTitle("Save Image");
 
+        FileNameExtensionFilter filtroExtension = new FileNameExtensionFilter("Imagen(*.png)", "png");//filtra archivos de tipo jpg
+        fileChooser.setFileFilter(filtroExtension);
+
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = new File(fileChooser.getSelectedFile() + ".png");//crea el archivo file con la extencion jpg
+
+            try {
+                WritableImage writableImage
+                        = new WritableImage((int) gridCountainer.getWidth(), (int) gridCountainer.getHeight());
+                gridCountainer.snapshot(null, writableImage);
+
+                try {
+                    ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
+                    System.out.println("snapshot saved: " + file.getAbsolutePath());
+                } catch (IOException ex) {
+                    System.out.print("problemas");
+                }
+
+            } catch (Exception E) {
+
+            }
+        }
+    }
 
         }     
     

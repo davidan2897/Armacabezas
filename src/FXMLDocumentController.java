@@ -1,42 +1,25 @@
 import Domain.Files;
 import Domain.auxiliarControles;
-import java.awt.AWTException;
-import java.awt.Dimension;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.util.Locale;
-import static java.util.Locale.filter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
 import  javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
-import javafx.stage.FileChooser;
-import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author david
@@ -49,11 +32,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label labelWelcome;
     @FXML
-    private ScrollPane scrollPaneMapa;
+    private ScrollPane scrollPaneImages;
     @FXML
     private AnchorPane anchorCountainerMap;
      @FXML
-    private AnchorPane anchor;
+    private AnchorPane anchorImages;
     @FXML
     private Button apply;
      @FXML
@@ -64,7 +47,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField numRow;  
     @FXML
     private TextField numColum; 
-    
+     @FXML
+    private Menu menuExport; 
 
     //Accion Buttonapply
     public void handleButtonaApply(ActionEvent event) {
@@ -75,6 +59,8 @@ public class FXMLDocumentController implements Initializable {
               
       if(numRow.getText().isEmpty()==false && numColum.getText().isEmpty()==false){
       if(auxControles.isEntero(numRow, numColum)==true){
+       scrollPaneImages.setDisable(false);
+       menuExport.setDisable(false);
        
         int numeroImagenesFila = Integer.parseInt(numRow.getText());
         int numeroImagenesColumna = Integer.parseInt(numColum.getText());
@@ -110,6 +96,7 @@ public class FXMLDocumentController implements Initializable {
         
         System.exit(0);
     }
+    
     //Accion menuItemAbout
     public void ItemAbout(ActionEvent event) {
        
@@ -128,15 +115,21 @@ public class FXMLDocumentController implements Initializable {
     //carga las imagenes a la interfaz
     public void cargarImagenes() throws Exception{
         
-     anchor.getChildren().addAll(files.printImages());
+     anchorImages.getChildren().addAll(files.printImages());
         
         
     }   
    
-    //exporta las image final en archivo jpg Item export
+    //exporta la imagen final en archivo jpg Item export jpg
     public void exportImagejpg() {
  
-  auxControles.takeSnapshot(gridCountainer);
+  auxControles.takeSnapshotjpg(gridCountainer);
+}    
+    
+     //exporta la imagen final en archivo jpg Item export png
+        public void exportImagepng() {
+ 
+  auxControles.takeSnapshotpng(gridCountainer);
 }    
     
     

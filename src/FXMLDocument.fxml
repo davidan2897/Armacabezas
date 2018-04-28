@@ -53,9 +53,9 @@
                   <MenuItem fx:id="menuItemExit" mnemonicParsing="false" onAction="#ItemExit" text="Exit" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Export">
+          <Menu fx:id="menuExport" disable="true" mnemonicParsing="false" text="Export">
             <items>
-              <MenuItem mnemonicParsing="false" text="png" />
+              <MenuItem mnemonicParsing="false" onAction="#exportImagepng" text="png" />
                   <MenuItem mnemonicParsing="false" onAction="#exportImagejpg" text="jpg" />
             </items>
           </Menu>
@@ -76,9 +76,9 @@
          </font></Label>
       <TextField fx:id="numColum" layoutX="72.0" layoutY="473.0" prefHeight="25.0" prefWidth="29.0" />
       <TextField fx:id="numRow" layoutX="14.0" layoutY="473.0" prefHeight="25.0" prefWidth="29.0" />
-      <ScrollPane layoutX="430.0" layoutY="56.0" prefHeight="350.0" prefWidth="137.0">
+      <ScrollPane fx:id="scrollPaneImages" disable="true" layoutX="430.0" layoutY="56.0" prefHeight="350.0" prefWidth="137.0">
         <content>
-          <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="136.0" />
+          <AnchorPane fx:id="anchorImages" minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="136.0" />
         </content>
       </ScrollPane>
       <Button fx:id="apply" layoutX="140.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleButtonaApply" text="Apply">
