@@ -39,10 +39,10 @@ import org.w3c.dom.NodeList;
  * @author David
  */
 public class Files {
-    public ArrayList<Imagenes> imagenesArrayList = new ArrayList<>();
-    ImageView imageviewAux;
-    public void ReadXml() throws Exception  {
-    
+
+ 
+    public ArrayList<Imagenes> ReadXml() throws Exception  {
+     ArrayList<Imagenes> imagenesArrayList = new ArrayList<>();
  
         try {
             File fXmlFile = new File("src/ImagesXML.xml");
@@ -70,6 +70,7 @@ public class Files {
    } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Problemas con el archivo");
    }
+        return imagenesArrayList;
   }
  
   private static String getTagValue(String sTag, Element eElement) {
@@ -80,45 +81,7 @@ public class Files {
  return nValue.getNodeValue();
   }
   
-  public VBox printImages() throws Exception{
-      ReadXml();
-       Imagenes tempImagenes = null;
-       String url;
-       VBox vbox = new VBox();
-      for(int i=0;i<imagenesArrayList.size();i++){
-     tempImagenes = imagenesArrayList.get(i);
-     url = tempImagenes.getURL();
-     Image image = new Image(url);
-      ImageView imageView = new ImageView(image);
-     imageView.setCursor(Cursor.OPEN_HAND);
-  imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-     public void handle(MouseEvent mouseEvent) {
-
-                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                     imageView.getImage();
-                     imageviewAux =imageView;
-                    if (mouseEvent.getClickCount() == 2) {
-                    
-
-                    }
-
-                }
-            }
-
-        });
-          
-          
-    
-
-     imageView.setFitHeight(100);
-     imageView.setFitWidth(100);
-  
-     vbox.getChildren().addAll(imageView);
-
-      }
-        return vbox;
-      
-  }
+ 
 }
   
   

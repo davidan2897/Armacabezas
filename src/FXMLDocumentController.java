@@ -1,12 +1,16 @@
 import Domain.Files;
+import Domain.Imagenes;
 import Domain.auxiliarControles;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -14,9 +18,15 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javax.swing.JOptionPane;
 import  javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
@@ -27,6 +37,9 @@ import javafx.scene.shape.StrokeType;
 public class FXMLDocumentController implements Initializable {
   auxiliarControles auxControles = new auxiliarControles();
   Files files = new Files();
+//  String url;
+//  Image image = new Image(url);
+//  ImageView imageView = new ImageView(image);
   @FXML
   private GridPane gridCountainer;
     @FXML
@@ -70,10 +83,11 @@ public class FXMLDocumentController implements Initializable {
         for (int r = 0; r < numeroImagenesFila; r++) {
             for (int c = 0; c < numeroImagenesColumna; c++) {
                 images[c][r] = new Rectangle(100, 100, Color.WHITE);
-                Rectangle imageTmp = images[c][r];
-                imageTmp.setStrokeType(StrokeType.OUTSIDE);
-                imageTmp.setStroke(Color.CADETBLUE);
-
+                Rectangle rectangles = images[c][r];
+                rectangles.setStrokeType(StrokeType.OUTSIDE);           
+                rectangles.setStroke(Color.CADETBLUE);
+//                rectangles.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
+               
                 gridCountainer.add(images[c][r], c, r);
 
             }
@@ -115,11 +129,46 @@ public class FXMLDocumentController implements Initializable {
     //carga las imagenes a la interfaz
     public void cargarImagenes() throws Exception{
         
-     anchorImages.getChildren().addAll(files.printImages());
+     anchorImages.getChildren().addAll(printImages());
         
         
     }   
-   
+      public VBox printImages() throws Exception {
+
+        Imagenes tempImagenes = null;
+        String url;
+        VBox vbox = new VBox();
+        for (int i = 0; i < files.ReadXml().size(); i++) {
+            tempImagenes = files.ReadXml().get(i);
+            url = tempImagenes.getURL();
+           Image image = new Image(url);
+           ImageView imageView = new ImageView(image);
+            imageView.setCursor(Cursor.OPEN_HAND);
+            imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                public void handle(MouseEvent mouseEvent) {
+
+                    if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+//                          System.out.print(imageView.getImage()); 
+                          gridCountainer.add(imageView, 1, 0);
+                        if (mouseEvent.getClickCount() == 2) {
+
+                        }
+
+                    }
+                }
+
+            });
+
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(100);
+
+            vbox.getChildren().addAll(imageView);
+
+        }
+        return vbox;
+
+    }
+
     //exporta la imagen final en archivo jpg Item export jpg
     public void exportImagejpg() {
  
@@ -144,15 +193,5 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
-
-
-
-   /**
- *
- * @author kevin
- * 
- * Realiza un screenshot del gridpane,utilizando un filechooserr
- */
-
     
 }
