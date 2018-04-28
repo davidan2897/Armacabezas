@@ -86,7 +86,7 @@ public class FXMLDocumentController implements Initializable {
                 Rectangle rectangles = images[c][r];
                 rectangles.setStrokeType(StrokeType.OUTSIDE);           
                 rectangles.setStroke(Color.CADETBLUE);
-//                rectangles.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
+              
                
                 gridCountainer.add(images[c][r], c, r);
 
@@ -149,10 +149,18 @@ public class FXMLDocumentController implements Initializable {
 
                     if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
 //                          System.out.print(imageView.getImage()); 
-                          gridCountainer.add(imageView, 1, 0);
-                        if (mouseEvent.getClickCount() == 2) {
+                      
+                          ImageView iv = new ImageView(image);
+                          iv.setFitHeight(100);
+                           iv.setFitWidth(100);
+                           Rectangle rc = new Rectangle(99, 98, Color.WHITE);
+                           rc.setStrokeType(StrokeType.OUTSIDE);           
+                rc.setStroke(Color.CADETBLUE);
+                           gridCountainer.add(rc, 0, 0);
+                          gridCountainer.add(iv , 0, 0);
+                          
 
-                        }
+                        
 
                     }
                 }
