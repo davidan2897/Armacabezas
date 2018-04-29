@@ -2,12 +2,9 @@ import Domain.Files;
 import Domain.Imagenes;
 import Domain.auxiliarControles;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.DoubleProperty;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,12 +19,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -66,55 +61,66 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField numColum; 
      @FXML
-    private Menu menuExport; 
+    private Menu menuExport;
 
-    //Accion Buttonapply
-    public void handleButtonaApply(ActionEvent event) {
-      anchorCountainerMap.getChildren().clear();
-      gridCountainer.getChildren().clear();
-      
-      
-              
-      if(numRow.getText().isEmpty()==false && numColum.getText().isEmpty()==false){
-      if(auxControles.isEntero(numRow, numColum)==true){
-       scrollPaneImages.setDisable(false);
-       menuExport.setDisable(false);
-       
-        int numeroImagenesFila = Integer.parseInt(numRow.getText());
-        int numeroImagenesColumna = Integer.parseInt(numColum.getText());
-
-       
-        Rectangle[][] images = new Rectangle[numeroImagenesColumna][numeroImagenesFila];
-        for (int r = 0; r < numeroImagenesFila; r++) {
-            for (int c = 0; c < numeroImagenesColumna; c++) {
-                images[c][r] = new Rectangle(100, 100, Color.WHITE);
-                 rectangles = images[c][r];
-                rectangles.setStrokeType(StrokeType.OUTSIDE);           
-                rectangles.setStroke(Color.CADETBLUE);
-                       rectangles.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            public void handle(MouseEvent mouseEvent) {
-                               
-                                rectangles.setFill(new ImagePattern(imageAux, 0, 0, 100, 100, false));
-                               
-                            }
-
-                        });
+     public void clickedgridPane(){
          
-               
-                gridCountainer.add(images[c][r], c, r);
+          rectangles.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    public void handle(MouseEvent mouseEvent) {
+                       
+                        int posicionC = GridPane.getColumnIndex(rectangles);
+                        int posicionR = GridPane.getRowIndex(rectangles);
+                        System.out.print(posicionC + " " + posicionR+"\n");
+                        if(!imageAux.equals(null))
+                    rectangles.setFill(new ImagePattern(imageAux, 0, 0, 100, 100, false));
+                       
+                    }
+
+                });
+         
+     }
+     
+     
+     
+     
+    //Accion Buttonapply
+     //si los valores que entran como textfield son enteros habilita el scrollPane que tiene el anchor de imagenes
+     //se habilita el tablero 
+    public void handleButtonaApply(ActionEvent event) {
+        anchorCountainerMap.getChildren().clear();
+        gridCountainer.getChildren().clear();
+
+        if (numRow.getText().isEmpty() == false && numColum.getText().isEmpty() == false) {
+            if (auxControles.isEntero(numRow, numColum) == true) {
+                scrollPaneImages.setDisable(false);
+                menuExport.setDisable(false);
+
+                int numeroImagenesFila = Integer.parseInt(numRow.getText());
+                int numeroImagenesColumna = Integer.parseInt(numColum.getText());
+
+                Rectangle[][] rectangulosMatriz = new Rectangle[numeroImagenesColumna][numeroImagenesFila];
+                for (int r = 0; r < numeroImagenesFila; r++) {
+                    for (int c = 0; c < numeroImagenesColumna; c++) {
+                        rectangulosMatriz[c][r] = new Rectangle(100, 100, Color.WHITE);
+                        rectangles = rectangulosMatriz[c][r];
+                        rectangles.setStrokeType(StrokeType.OUTSIDE);
+                        rectangles.setStroke(Color.CADETBLUE);
+                        gridCountainer.add(rectangulosMatriz[c][r], c, r);
+                    }
               
-            }
-        }
-        gridCountainer.setPrefSize(numeroImagenesColumna * 100, numeroImagenesFila * 100);
-        anchorCountainerMap.getChildren().addAll(gridCountainer);
-      }//fin if isEntero
-      else{
-          JOptionPane.showMessageDialog(null, "Character no valid");
-      }//fin caracter no valido
-       }//fin if isEntero
-      else{
-          JOptionPane.showMessageDialog(null, "There is not characters entered");
-      }//fin isEmpty
+                }
+                gridCountainer.setPrefSize(numeroImagenesColumna * 100, numeroImagenesFila * 100);
+                anchorCountainerMap.getChildren().addAll(gridCountainer);
+               
+               
+            }//fin if isEntero
+            else {
+                JOptionPane.showMessageDialog(null, "Character no valid");
+            }//fin caracter no valido
+        }//fin if isEntero
+        else {
+            JOptionPane.showMessageDialog(null, "There is not characters entered");
+        }//fin isEmpty
     }// buttonApply
     
   
@@ -163,6 +169,7 @@ public class FXMLDocumentController implements Initializable {
 
                     if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                    imageAux=imageView.getImage();
+                   gridCountainer.setDisable(false);
                               
                        
 
