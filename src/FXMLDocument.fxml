@@ -28,7 +28,7 @@
                         <Font name="Broadway" size="50.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="gridCountainer" layoutX="26.0" layoutY="72.0">
+                  <GridPane fx:id="gridCountainer" disable="true" layoutX="26.0" layoutY="72.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -71,7 +71,7 @@ public class FXMLDocumentController implements Initializable {
                         int posicionC = GridPane.getColumnIndex(rectangles);
                         int posicionR = GridPane.getRowIndex(rectangles);
                         System.out.print(posicionC + " " + posicionR+"\n");
-                        if(!imageAux.equals(null))
+                    
                     rectangles.setFill(new ImagePattern(imageAux, 0, 0, 100, 100, false));
                        
                     }
