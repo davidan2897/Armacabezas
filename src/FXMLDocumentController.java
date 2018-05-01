@@ -34,10 +34,11 @@ import javafx.scene.shape.StrokeType;
  * @author david
  */
 public class FXMLDocumentController implements Initializable {
-  auxiliarControles auxControles = new auxiliarControles();
-  Files files = new Files();
-   Rectangle rectangles;
-   Image imageAux;
+    
+    auxiliarControles auxControles = new auxiliarControles();
+    Files files = new Files();
+    Rectangle rectangles;
+    Image imageAux;
    
  
   @FXML
@@ -63,26 +64,6 @@ public class FXMLDocumentController implements Initializable {
      @FXML
     private Menu menuExport;
 
-     public void clickedgridPane(){
-         
-          rectangles.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    public void handle(MouseEvent mouseEvent) {
-                       
-                        int posicionC = GridPane.getColumnIndex(rectangles);
-                        int posicionR = GridPane.getRowIndex(rectangles);
-                        System.out.print(posicionC + " " + posicionR+"\n");
-                    
-                    rectangles.setFill(new ImagePattern(imageAux, 0, 0, 100, 100, false));
-                       
-                    }
-
-                });
-         
-     }
-     
-     
-     
-     
     //Accion Buttonapply
      //si los valores que entran como textfield son enteros habilita el scrollPane que tiene el anchor de imagenes
      //se habilita el tablero 
@@ -107,6 +88,19 @@ public class FXMLDocumentController implements Initializable {
                         rectangles.setStroke(Color.CADETBLUE);
                         gridCountainer.add(rectangulosMatriz[c][r], c, r);
                     }
+                     rectangles.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    public void handle(MouseEvent mouseEvent) {
+                       
+                        int posicionC = GridPane.getColumnIndex(rectangles);
+                        int posicionR = GridPane.getRowIndex(rectangles);
+                        System.out.print(posicionC + " " + posicionR+"\n");
+                    
+                    rectangles.setFill(new ImagePattern(imageAux, 0, 0, 100, 100, false));
+                       
+                    }
+
+                });
+         
               
                 }
                 gridCountainer.setPrefSize(numeroImagenesColumna * 100, numeroImagenesFila * 100);
@@ -168,8 +162,9 @@ public class FXMLDocumentController implements Initializable {
                 public void handle(MouseEvent mouseEvent) {
 
                     if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                         gridCountainer.setDisable(false);
                    imageAux=imageView.getImage();
-                   gridCountainer.setDisable(false);
+                  
                               
                        
 
