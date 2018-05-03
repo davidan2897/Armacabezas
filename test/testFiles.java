@@ -73,7 +73,7 @@ public class testFiles {
 
         ArrayList<Imagenes> imagenesArrayListaa = new ArrayList<>();
         imagenesArrayListaa = File.ReadXml();
-        assertEquals(imagenesArrayListaa.size(), 4);
+        assertEquals(imagenesArrayListaa.size(), 9);
 
     }
 
@@ -88,11 +88,6 @@ public class testFiles {
 
     }
 
-    @Test(expected = IOException.class)
-    public void tesTakeSnap() {
-        Domain.auxiliarControles aux = new auxiliarControles();
-        GridPane gridCountainer = new GridPane();
-        aux.takeSnapshotjpg(gridCountainer);
-    }
+   
 
 }

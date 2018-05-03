@@ -52,6 +52,8 @@ public class FXMLDocumentController implements Initializable {
     private MenuItem menuItemExit;
       @FXML
     private MenuItem menuItemAbout;
+      @FXML
+    private MenuItem menuItemInfo;
     @FXML
     private TextField numRow;  
     @FXML
@@ -125,10 +127,21 @@ public class FXMLDocumentController implements Initializable {
     public void ItemAbout(ActionEvent event) {
        
         TextArea textAreabout = new TextArea();
-        auxControles.FormatoTextArea(textAreabout);
+        auxControles.FormatoTextAreaAbout(textAreabout);
 
         anchorCountainerMap.getChildren().clear();
         anchorCountainerMap.getChildren().addAll(textAreabout);
+    }
+        
+    
+    //Accion menuItemInfo
+    public void ItemInfo(ActionEvent event) {
+       
+        TextArea textAreaInfo= new TextArea();
+        auxControles.FormatoTextAreaInfo(textAreaInfo);
+
+        anchorCountainerMap.getChildren().clear();
+        anchorCountainerMap.getChildren().addAll(textAreaInfo);
     }
     
     //animacion de labelWelcome

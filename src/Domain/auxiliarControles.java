@@ -36,7 +36,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class auxiliarControles {
 
   
-    public void FormatoTextArea(TextArea textAreabout) {
+    public void FormatoTextAreaAbout(TextArea textAreabout) {
 
         String texto = ("This application is made for the purpose of \n"
                 + "that the client can design their own images from other images\n"
@@ -52,6 +52,27 @@ public class auxiliarControles {
         textAreabout.setLayoutY(80);
 
     }
+      public void FormatoTextAreaInfo(TextArea textAreaInfo) {
+
+        String texto = ("Steps to use the program : \n"
+                + "1.Write the size of the map\n"
+                + "2.Click the image that you want to locate in the rectangles\n"
+                + "3.Click the rectangle that you want to paste the image\n"
+                +" 4.If you want to delete a image click the first image and paste over the image that you want to delete\n"
+                +" 5.If you want to export click to the button export and choose the format wanted\n");
+        textAreaInfo.setText(texto);
+        textAreaInfo.setFont(new Font("Comic Sans MS", 13));
+        textAreaInfo.setStyle("-fx-highlight-fill: #66CCFF; -fx-highlight-text-fill: #000000; -fx-text-fill: #000033; -fx-background-color:#CC0000;");
+        textAreaInfo.setWrapText(true);
+        textAreaInfo.setMaxSize(300, 200);
+        textAreaInfo.setEditable(false);
+       textAreaInfo.setLayoutX(40);
+        textAreaInfo.setLayoutY(80);
+
+    }
+    
+    
+    
     public void animacionLabelWelcome(Label labelWelcome){
     
         
