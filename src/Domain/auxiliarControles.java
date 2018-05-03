@@ -26,6 +26,7 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -127,7 +128,7 @@ public class auxiliarControles {
 
                 try {
                     ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-                    System.out.println("snapshot saved: " + file.getAbsolutePath());
+                    JOptionPane.showMessageDialog(null, "Picture save successfully  "+file.getAbsolutePath(),"Information", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
                     System.out.print("problemas");
                 }
@@ -154,8 +155,8 @@ public void takeSnapshotpng(GridPane gridCountainer) {
                 gridCountainer.snapshot(null, writableImage);
 
                 try {
-                    ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-                    System.out.println("snapshot saved: " + file.getAbsolutePath());
+                    ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "jpg", file);
+                    JOptionPane.showMessageDialog(null, "Picture save successfully  "+file.getAbsolutePath(),"Information", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
                     System.out.print("problemas");
                 }

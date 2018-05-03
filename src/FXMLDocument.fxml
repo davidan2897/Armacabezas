@@ -21,7 +21,7 @@
       <Label layoutY="-25.0" prefHeight="444.0" prefWidth="585.0" style="-fx-background-color: #636a93;" />
       <ScrollPane fx:id="scrollPaneMapa" hbarPolicy="ALWAYS" layoutX="12.0" layoutY="43.0" prefHeight="350.0" prefWidth="389.0" vbarPolicy="ALWAYS">
          <content>
-            <AnchorPane fx:id="anchorCountainerMap" prefHeight="314.0" prefWidth="359.0" style="-fx-background-color: #000000;">
+            <AnchorPane fx:id="anchorCountainerMap" prefHeight="332.0" prefWidth="372.0" style="-fx-background-color: #000000;">
                <children>
                   <Label fx:id="labelWelcome" layoutX="51.0" text="Welcome" textFill="#e5e1e1">
                      <font>
