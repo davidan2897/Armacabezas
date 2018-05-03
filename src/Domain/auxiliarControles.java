@@ -19,9 +19,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
@@ -149,7 +146,7 @@ public class auxiliarControles {
 
                 try {
                     ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-                    JOptionPane.showMessageDialog(null, "Picture save successfully  "+file.getAbsolutePath(),"Information", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Picture save successfully at: "+file.getAbsolutePath(),"Information", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
                     System.out.print("problemas");
                 }
@@ -177,7 +174,7 @@ public void takeSnapshotpng(GridPane gridCountainer) {
 
                 try {
                     ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-                    JOptionPane.showMessageDialog(null, "Picture save successfully  "+file.getAbsolutePath(),"Information", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Picture save successfully  at:"+file.getAbsolutePath(),"Information", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
                     System.out.print("problemas");
                 }
