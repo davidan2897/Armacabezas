@@ -8,6 +8,10 @@ and open the template in the editor.
 
 <root>
     <image> 
+        <nombre>cuadrado</nombre>
+        <URL>Imagenes/Cuadrado.jpg</URL>
+    </image> 
+    <image> 
         <nombre>iconoMk</nombre>
         <URL>Imagenes/iconoMK.png</URL>
     </image> 
@@ -15,6 +19,22 @@ and open the template in the editor.
         <nombre>Icono_facebook</nombre>
         <URL>Imagenes/Icono_Facebook.png</URL>
     </image>
+    <image> 
+        <nombre>iconoDragonBall</nombre>
+        <URL>Imagenes/iconoDZ.png</URL>
+    </image> 
+    <image> 
+        <nombre>iconoGoku</nombre>
+        <URL>Imagenes/iconoGoku.jpg</URL>
+    </image> 
+    <image> 
+        <nombre>iconoPinkFloyd</nombre>
+        <URL>Imagenes/iconoPF.jpg</URL>
+    </image> 
+    <image> 
+        <nombre>iconoSodaStereo</nombre>
+        <URL>Imagenes/iconoSodaStereo.jpg</URL>
+    </image> 
     <image>
         <nombre>Twitter-icon</nombre>
         <URL>Imagenes/Twitter-icon.png</URL>

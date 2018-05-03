@@ -24,11 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javax.swing.JOptionPane;
-import  javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
 /**
  *
  * @author david
@@ -37,7 +33,6 @@ public class FXMLDocumentController implements Initializable {
     
     auxiliarControles auxControles = new auxiliarControles();
     Files files = new Files();
-    Rectangle rectangles;
     Image imageAux;
    
  
@@ -63,6 +58,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField numColum; 
      @FXML
     private Menu menuExport;
+       @FXML
+    private VBox vboxImages;
 
     //Accion Buttonapply
      //si los valores que entran como textfield son enteros habilita el scrollPane que tiene el anchor de imagenes
@@ -79,34 +76,25 @@ public class FXMLDocumentController implements Initializable {
                 int numeroImagenesFila = Integer.parseInt(numRow.getText());
                 int numeroImagenesColumna = Integer.parseInt(numColum.getText());
 
-                ImageView [][] rectangulosMatriz = new ImageView[numeroImagenesColumna][numeroImagenesFila];
+                ImageView [][] ImagesMatriz = new ImageView[numeroImagenesColumna][numeroImagenesFila];
                 for (int r = 0; r < numeroImagenesFila; r++) {
                     for (int c = 0; c < numeroImagenesColumna; c++) {
-                        ImageView iv =  new ImageView("Imagenes/Cuadrado.jpg");
-                        iv.setFitHeight(100);
-                         iv.setFitWidth(100);
-                           rectangulosMatriz[c][r] = iv;
-                              gridCountainer.add(rectangulosMatriz[c][r], c, r);
-//                        rectangles = new Rectangle(100, 100, Color.WHITE);
-                        iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        ImageView imageViewControladorImagenes =  new ImageView("Imagenes/Cuadrado.jpg");
+                        imageViewControladorImagenes.setFitHeight(100);
+                         imageViewControladorImagenes.setFitWidth(100);
+                           ImagesMatriz[c][r] = imageViewControladorImagenes;
+                              gridCountainer.add(ImagesMatriz[c][r], c, r);
+                        imageViewControladorImagenes.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             public void handle(MouseEvent mouseEvent) {
                                
-                                int posicionC = GridPane.getColumnIndex(iv);
-                                int posicionR = GridPane.getRowIndex(iv);
-                                System.out.print(posicionC + " " + posicionR + "\n");
-                                iv.setImage(imageAux);
-                                gridCountainer.getChildren().remove(iv);
-                                gridCountainer.add(iv, posicionC, posicionR);
-//                                rectangles.setFill(new ImagePattern(imageAux, 0, 0, 100, 100, false));
-
+                                int posicionC = GridPane.getColumnIndex(imageViewControladorImagenes);
+                                int posicionR = GridPane.getRowIndex(imageViewControladorImagenes);
+                                imageViewControladorImagenes.setImage(imageAux);
+                                gridCountainer.getChildren().remove(imageViewControladorImagenes);
+                                gridCountainer.add(imageViewControladorImagenes, posicionC, posicionR);
                             }
 
                         });
-
-                      
-//                        rectangles.setStrokeType(StrokeType.OUTSIDE);
-//                        rectangles.setStroke(Color.CADETBLUE);
-                     
                     }
                     
          
@@ -142,6 +130,7 @@ public class FXMLDocumentController implements Initializable {
         anchorCountainerMap.getChildren().clear();
         anchorCountainerMap.getChildren().addAll(textAreabout);
     }
+    
     //animacion de labelWelcome
 
     public void movientoLabelWelcome() {
@@ -150,29 +139,28 @@ public class FXMLDocumentController implements Initializable {
 
     //carga las imagenes a la interfaz
     public void cargarImagenes() throws Exception{
-        
-     anchorImages.getChildren().addAll(printImages());
-        
-        
-    }   
-      public VBox printImages() throws Exception {
+    printImages();
+    }  
+    
+      public void printImages() throws Exception {
 
         Imagenes tempImagenes = null;
         String url;
         VBox vbox = new VBox();
+        
         for (int i = 0; i < files.ReadXml().size(); i++) {
             tempImagenes = files.ReadXml().get(i);
             url = tempImagenes.getURL();
-           Image image = new Image(url);
+           Image imageXML = new Image(url);
            
-           ImageView imageView = new ImageView(image);
-            imageView.setCursor(Cursor.OPEN_HAND);
-            imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+           ImageView imageViewXMLImages = new ImageView(imageXML);
+            imageViewXMLImages.setCursor(Cursor.OPEN_HAND);
+            imageViewXMLImages.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 public void handle(MouseEvent mouseEvent) {
 
                     if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                          gridCountainer.setDisable(false);
-                   imageAux=imageView.getImage();
+                   imageAux=imageViewXMLImages.getImage();
                   
                               
                        
@@ -182,13 +170,13 @@ public class FXMLDocumentController implements Initializable {
 
             });
 
-            imageView.setFitHeight(100);
-            imageView.setFitWidth(100);
+            imageViewXMLImages.setFitHeight(100);
+            imageViewXMLImages.setFitWidth(100);
 
-            vbox.getChildren().addAll(imageView);
+            vboxImages.getChildren().addAll(imageViewXMLImages);
 
         }
-        return vbox;
+    
 
     }
 

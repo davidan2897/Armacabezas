@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -12,13 +13,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="564.0" style="-fx-background-color: #787474;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
    <children>
       <Label layoutY="-25.0" prefHeight="444.0" prefWidth="585.0" style="-fx-background-color: #636a93;" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="350.0" layoutX="17.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="382.0" />
       <ScrollPane fx:id="scrollPaneMapa" hbarPolicy="ALWAYS" layoutX="12.0" layoutY="43.0" prefHeight="350.0" prefWidth="389.0" vbarPolicy="ALWAYS">
          <content>
             <AnchorPane fx:id="anchorCountainerMap" prefHeight="314.0" prefWidth="359.0" style="-fx-background-color: #000000;">
@@ -37,6 +37,9 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor>
                   </GridPane>
                </children>
                <padding>
@@ -76,11 +79,6 @@
          </font></Label>
       <TextField fx:id="numColum" layoutX="72.0" layoutY="473.0" prefHeight="25.0" prefWidth="29.0" />
       <TextField fx:id="numRow" layoutX="14.0" layoutY="473.0" prefHeight="25.0" prefWidth="29.0" />
-      <ScrollPane fx:id="scrollPaneImages" disable="true" layoutX="430.0" layoutY="56.0" prefHeight="350.0" prefWidth="137.0">
-        <content>
-          <AnchorPane fx:id="anchorImages" minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="136.0" />
-        </content>
-      </ScrollPane>
       <Button fx:id="apply" layoutX="140.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleButtonaApply" text="Apply">
          <font>
             <Font name="Franklin Gothic Demi" size="14.0" />
@@ -91,5 +89,17 @@
             <Font name="Georgia" size="12.0" />
          </font>
       </Label>
+      <ScrollPane fx:id="scrollPaneImages" disable="true" hbarPolicy="ALWAYS" layoutX="433.0" layoutY="43.0" prefHeight="350.0" prefWidth="136.0" vbarPolicy="ALWAYS">
+         <content>
+            <AnchorPane fx:id="anchorImages" prefHeight="327.0" prefWidth="119.0" style="-fx-background-color: #000000;">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <children>
+                  <VBox fx:id="vboxImages" alignment="TOP_CENTER" layoutX="14.0" layoutY="47.0" prefHeight="200.0" prefWidth="72.0" spacing="18.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
