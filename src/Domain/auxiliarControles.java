@@ -38,18 +38,18 @@ public class auxiliarControles {
   
     public void FormatoTextArea(TextArea textAreabout) {
 
-        String texto = ("Esta aplicacion esta hecha con el proposito de \n"
-                + "que el cliente pueda diseñar sus propias imagenes apartir de otras imagenes\n"
-                + "Creador David Aguilera Navarro"
-                + " \n Version 1.0");
+        String texto = ("This application is made for the purpose of \n"
+                + "that the client can design their own images from other images\n"
+                + "\nProgramers : \nDavid Aguilera Navarro\nKevin Picado Quesada"
+                + " \n\n Version 1.0");
         textAreabout.setText(texto);
         textAreabout.setFont(new Font("Comic Sans MS", 13));
         textAreabout.setStyle("-fx-highlight-fill: #66CCFF; -fx-highlight-text-fill: #000000; -fx-text-fill: #000033; -fx-background-color:#CC0000;");
         textAreabout.setWrapText(true);
-        textAreabout.setMaxSize(250, 150);
+        textAreabout.setMaxSize(300, 200);
         textAreabout.setEditable(false);
         textAreabout.setLayoutX(40);
-        textAreabout.setLayoutY(100);
+        textAreabout.setLayoutY(80);
 
     }
     public void animacionLabelWelcome(Label labelWelcome){
@@ -155,7 +155,7 @@ public void takeSnapshotpng(GridPane gridCountainer) {
                 gridCountainer.snapshot(null, writableImage);
 
                 try {
-                    ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "jpg", file);
+                    ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
                     JOptionPane.showMessageDialog(null, "Picture save successfully  "+file.getAbsolutePath(),"Information", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
                     System.out.print("problemas");
