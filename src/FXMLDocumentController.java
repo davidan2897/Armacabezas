@@ -85,6 +85,8 @@ public class FXMLDocumentController implements Initializable {
                         ImageView iv =  new ImageView("Imagenes/Cuadrado.jpg");
                         iv.setFitHeight(100);
                          iv.setFitWidth(100);
+                           rectangulosMatriz[c][r] = iv;
+                              gridCountainer.add(rectangulosMatriz[c][r], c, r);
 //                        rectangles = new Rectangle(100, 100, Color.WHITE);
                         iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             public void handle(MouseEvent mouseEvent) {
@@ -93,6 +95,7 @@ public class FXMLDocumentController implements Initializable {
                                 int posicionR = GridPane.getRowIndex(iv);
                                 System.out.print(posicionC + " " + posicionR + "\n");
                                 iv.setImage(imageAux);
+                                gridCountainer.getChildren().remove(iv);
                                 gridCountainer.add(iv, posicionC, posicionR);
 //                                rectangles.setFill(new ImagePattern(imageAux, 0, 0, 100, 100, false));
 
@@ -100,10 +103,10 @@ public class FXMLDocumentController implements Initializable {
 
                         });
 
-                        rectangulosMatriz[c][r] = iv;
+                      
 //                        rectangles.setStrokeType(StrokeType.OUTSIDE);
 //                        rectangles.setStroke(Color.CADETBLUE);
-                        gridCountainer.add(rectangulosMatriz[c][r], c, r);
+                     
                     }
                     
          
