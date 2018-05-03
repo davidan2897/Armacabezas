@@ -79,27 +79,33 @@ public class FXMLDocumentController implements Initializable {
                 int numeroImagenesFila = Integer.parseInt(numRow.getText());
                 int numeroImagenesColumna = Integer.parseInt(numColum.getText());
 
-                Rectangle[][] rectangulosMatriz = new Rectangle[numeroImagenesColumna][numeroImagenesFila];
+                ImageView [][] rectangulosMatriz = new ImageView[numeroImagenesColumna][numeroImagenesFila];
                 for (int r = 0; r < numeroImagenesFila; r++) {
                     for (int c = 0; c < numeroImagenesColumna; c++) {
-                        rectangulosMatriz[c][r] = new Rectangle(100, 100, Color.WHITE);
-                        rectangles = rectangulosMatriz[c][r];
-                        rectangles.setStrokeType(StrokeType.OUTSIDE);
-                        rectangles.setStroke(Color.CADETBLUE);
+                        ImageView iv =  new ImageView("Imagenes/Cuadrado.jpg");
+                        iv.setFitHeight(100);
+                         iv.setFitWidth(100);
+//                        rectangles = new Rectangle(100, 100, Color.WHITE);
+                        iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            public void handle(MouseEvent mouseEvent) {
+                               
+                                int posicionC = GridPane.getColumnIndex(iv);
+                                int posicionR = GridPane.getRowIndex(iv);
+                                System.out.print(posicionC + " " + posicionR + "\n");
+                                iv.setImage(imageAux);
+                                gridCountainer.add(iv, posicionC, posicionR);
+//                                rectangles.setFill(new ImagePattern(imageAux, 0, 0, 100, 100, false));
+
+                            }
+
+                        });
+
+                        rectangulosMatriz[c][r] = iv;
+//                        rectangles.setStrokeType(StrokeType.OUTSIDE);
+//                        rectangles.setStroke(Color.CADETBLUE);
                         gridCountainer.add(rectangulosMatriz[c][r], c, r);
                     }
-                     rectangles.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    public void handle(MouseEvent mouseEvent) {
-                       
-                        int posicionC = GridPane.getColumnIndex(rectangles);
-                        int posicionR = GridPane.getRowIndex(rectangles);
-                        System.out.print(posicionC + " " + posicionR+"\n");
                     
-                    rectangles.setFill(new ImagePattern(imageAux, 0, 0, 100, 100, false));
-                       
-                    }
-
-                });
          
               
                 }
